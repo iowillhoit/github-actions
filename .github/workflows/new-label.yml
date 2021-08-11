@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2020, salesforce.com, inc.
+# Copyright (c) 2021, salesforce.com, inc.
 # All rights reserved.
 # Licensed under the BSD 3-Clause license.
 # For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
@@ -23,7 +23,7 @@ jobs:
         label: 'owned by another team'
         message: >
           We have determined that the issue you reported exists in code owned by another team that uses only the official support channels.
-          To ensure that your issue is addressed, open an official Salesforce customer support ticket with a link to this issue.
+          To ensure that your issue is addressed, open an official [Salesforce customer support](https://help.salesforce.com/s/) ticket with a link to this issue.
           We encourage anyone experiencing this issue to do the same to increase the priority. We will keep this issue open for the community to collaborate on.
 
     - name: log action output

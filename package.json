@@ -1,21 +1,31 @@
 {
-	"name": "github-actions",
-	"version": "1.0.0",
-	"description": "Testing github actions",
-	"main": "lib/index.js",
-	"scripts": {},
-	"repository": {
-	  "type": "git",
-	  "url": "git+https://github.com/iowillhoit/github-actions.git"
-	},
-	"author": "Eric Willhoit",
-	"devDependencies": {
-	  "@actions/core": "^1.2.5",
-	  "@actions/github": "^4.0.0",
-	  "@octokit/webhooks": "^7.11.2"
-	},
-	"bugs": {
-	  "url": "https://github.com/forcedotcom/cli/issues"
-	},
-	"homepage": "https://github.com/forcedotcom/cli#readme"
+  "name": "github-actions",
+  "version": "1.0.0",
+  "description": "Testing github-actions",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc",
+    "postbuild": "ncc build"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn build && git add dist/index.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iowillhoit/github-actions.git"
+  },
+  "author": "Eric Willhoit",
+  "devDependencies": {
+    "@actions/core": "^1.2.5",
+    "@actions/github": "^4.0.0",
+    "@octokit/webhooks": "^7.11.2",
+    "@salesforce/dev-config": "^2.0.0",
+    "@types/node": "^12.7.12",
+    "@vercel/ncc": "^0.24.1",
+    "husky": "^4.3.0",
+    "prettier": "^1.19.1",
+    "typescript": "3.8.3"
   }
+}
