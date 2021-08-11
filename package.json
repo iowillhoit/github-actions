@@ -1,0 +1,21 @@
+{
+	"name": "github-actions",
+	"version": "1.0.0",
+	"description": "Testing github actions",
+	"main": "lib/index.js",
+	"scripts": {},
+	"repository": {
+	  "type": "git",
+	  "url": "git+https://github.com/iowillhoit/github-actions.git"
+	},
+	"author": "Eric Willhoit",
+	"devDependencies": {
+	  "@actions/core": "^1.2.5",
+	  "@actions/github": "^4.0.0",
+	  "@octokit/webhooks": "^7.11.2"
+	},
+	"bugs": {
+	  "url": "https://github.com/forcedotcom/cli/issues"
+	},
+	"homepage": "https://github.com/forcedotcom/cli#readme"
+  }
