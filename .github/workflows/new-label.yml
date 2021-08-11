@@ -73,6 +73,6 @@ jobs:
         repo-token: ${{ secrets.GITHUB_TOKEN}}
         label: 'feature'
         message: >
-          Thank you for filing this feature request. We have determined that the functionality you have suggested would need to be completed by another team. Please submit your request to the Salesforce IdeaExchange (https://trailblazer.salesforce.com/ideaSearch). Once submitted, please post a link to it in this issue so that other can upvote your idea.
+          Thank you for filing this feature request. We have determined that the functionality you have suggested would need to be completed by another team. Please submit your request to the [Salesforce IdeaExchange](https://trailblazer.salesforce.com/ideaSearch). Once submitted, please post a link to it in this issue so that other can upvote your idea.
     - name: log action output
       run: echo ${{steps.run_action.outputs.message}}
