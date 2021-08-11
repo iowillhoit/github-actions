@@ -58,3 +58,18 @@ jobs:
           Thank you for filing this feature request. We appreciate your feedback and will review the feature at our next grooming or sprint planning session. We prioritize feature requests with more upvotes and comments.
     - name: log action output
       run: echo ${{steps.run_action.outputs.message}}
+  new-feature-on-another-team:
+    if: ${{ contains(github.event.issue.labels.*.name, 'feature') && contains(github.event.issue.labels.*.name, 'owned by another team')}}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2.0.0
+    - name: issue comment
+      id: issue_comment
+      uses: ./
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN}}
+        label: 'feature'
+        message: >
+          TODO: Add message
+    - name: log action output
+      run: echo ${{steps.run_action.outputs.message}}
