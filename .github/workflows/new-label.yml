@@ -12,7 +12,7 @@ on: # any labels added to an issue
 
 jobs:
   owned-by-other-team:
-    if: ${{ github.event.label.name == 'owned by another team' && !contains(github.event.issue.labels.*.name, 'feature') }}
+    if: ${{ github.event.label.name === 'owned by another team' && !contains(github.event.issue.labels.*.name, 'feature') }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2.0.0
@@ -30,7 +30,7 @@ jobs:
     - name: log action output
       run: echo ${{steps.run_action.outputs.message}}
   new-issue:
-    if: ${{ github.event.label.name == 'investigating' }}
+    if: ${{ github.event.label.name === 'investigating' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2.0.0
@@ -47,7 +47,7 @@ jobs:
     - name: log action output
       run: echo ${{steps.run_action.outputs.message}}
   new-feature:
-    if: ${{ github.event.label.name == 'feature' && !contains(github.event.issue.labels.*.name, 'owned by another team') }}
+    if: ${{ github.event.label.name === 'feature' && !contains(github.event.issue.labels.*.name, 'owned by another team') }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2.0.0
@@ -62,7 +62,10 @@ jobs:
     - name: log action output
       run: echo ${{steps.run_action.outputs.message}}
   new-feature-on-another-team:
-    if: ${{ contains(github.event.issue.labels.*.name, 'feature') && contains(github.event.issue.labels.*.name, 'owned by another team') }}
+    if: >-
+      (github.event.label.name === 'feature' || github.event.label.name === 'owned by another team')
+      &&
+      (contains(github.event.issue.labels.*.name, 'feature') && contains(github.event.issue.labels.*.name, 'owned by another team'))
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2.0.0
