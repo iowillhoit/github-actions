@@ -12,6 +12,7 @@ on: # any labels added to an issue
 
 jobs:
   owned-by-other-team:
+    if: ${{ github.event.label.name == 'owned by another team' && !contains(github.event.issue.labels.*.name, 'feature') }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2.0.0
@@ -29,6 +30,7 @@ jobs:
     - name: log action output
       run: echo ${{steps.run_action.outputs.message}}
   new-issue:
+    if: ${{ github.event.label.name == 'investigating' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2.0.0
@@ -45,6 +47,7 @@ jobs:
     - name: log action output
       run: echo ${{steps.run_action.outputs.message}}
   new-feature:
+    if: ${{ github.event.label.name == 'feature' && !contains(github.event.issue.labels.*.name, 'owned by another team') }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2.0.0
@@ -59,7 +62,7 @@ jobs:
     - name: log action output
       run: echo ${{steps.run_action.outputs.message}}
   new-feature-on-another-team:
-    if: ${{ contains(github.event.issue.labels.*.name, 'feature') && contains(github.event.issue.labels.*.name, 'owned by another team')}}
+    if: ${{ contains(github.event.issue.labels.*.name, 'feature') && contains(github.event.issue.labels.*.name, 'owned by another team') }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2.0.0
@@ -70,6 +73,6 @@ jobs:
         repo-token: ${{ secrets.GITHUB_TOKEN}}
         label: 'feature'
         message: >
-          TODO: Add message
+          Thank you for filing this feature request. We have determined that the functionality you have suggested would need to be completed by another team. Please submit your request to the Salesforce IdeaExchange (https://trailblazer.salesforce.com/ideaSearch). Once submitted, please post a link to it in this issue so that other can upvote your idea.
     - name: log action output
       run: echo ${{steps.run_action.outputs.message}}
